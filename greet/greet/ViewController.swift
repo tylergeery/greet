@@ -11,6 +11,10 @@ import UIKit
 class ViewController: UIViewController, FBLoginViewDelegate {
 
     @IBOutlet var fbLoginView : FBLoginView!
+    @IBOutlet var fbProfilePictureView : FBProfilePictureView!
+
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +31,15 @@ class ViewController: UIViewController, FBLoginViewDelegate {
     }
     
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
-        println("User name: \(user.name)")
+        nameLabel.text = user.name
+        statusLabel.text = "Logged in as:"
+        fbProfilePictureView.profileID = user.objectID?
     }
     
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
-        println("User logged out")
+        nameLabel.text = nil
+        statusLabel.text = nil
+        fbProfilePictureView.profileID = nil
     }
     
     func loginView(loginView: FBLoginView!, handleError:NSError) {

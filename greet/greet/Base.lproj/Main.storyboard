@@ -24,16 +24,41 @@
                                 <rect key="frame" x="200" y="250" width="200" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQc-Uj-ReL">
+                                <rect key="frame" x="279" y="118" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6m-zd-55t">
+                                <rect key="frame" x="279" y="171" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7cZ-WT-D3Q" customClass="FBProfilePictureView">
+                                <rect key="frame" x="275" y="358" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="x6m-zd-55t" firstAttribute="top" secondItem="aQc-Uj-ReL" secondAttribute="bottom" constant="20" id="De5-ZP-2dn"/>
                             <constraint firstAttribute="centerX" secondItem="hH0-ax-eAj" secondAttribute="centerX" id="JZE-WN-4BH"/>
+                            <constraint firstItem="7cZ-WT-D3Q" firstAttribute="top" secondItem="hH0-ax-eAj" secondAttribute="bottom" constant="20" id="N7G-RO-uJ2"/>
                             <constraint firstAttribute="centerY" secondItem="hH0-ax-eAj" secondAttribute="centerY" id="R47-l4-qlk"/>
+                            <constraint firstAttribute="centerX" secondItem="7cZ-WT-D3Q" secondAttribute="centerX" id="gor-JT-1oK"/>
+                            <constraint firstAttribute="centerX" secondItem="aQc-Uj-ReL" secondAttribute="centerX" id="jFJ-zr-bBC"/>
+                            <constraint firstItem="hH0-ax-eAj" firstAttribute="top" secondItem="x6m-zd-55t" secondAttribute="bottom" constant="20" id="v0V-Gu-kjY"/>
+                            <constraint firstAttribute="centerX" secondItem="x6m-zd-55t" secondAttribute="centerX" id="zEa-3M-xJ6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4ff-N2-9LW"/>
                     <connections>
                         <outlet property="fbLoginView" destination="hH0-ax-eAj" id="xai-MK-X9A"/>
+                        <outlet property="fbProfilePictureView" destination="7cZ-WT-D3Q" id="uF1-iM-x7D"/>
+                        <outlet property="nameLabel" destination="x6m-zd-55t" id="l5E-DJ-PJh"/>
+                        <outlet property="statusLabel" destination="aQc-Uj-ReL" id="Co9-jh-4AB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
