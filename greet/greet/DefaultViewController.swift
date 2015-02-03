@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, FBLoginViewDelegate {
+class DefaultViewController: UIViewController, FBLoginViewDelegate {
 
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var fbProfilePictureView : FBProfilePictureView!
@@ -34,6 +34,21 @@ class ViewController: UIViewController, FBLoginViewDelegate {
         nameLabel.text = user.name
         statusLabel.text = "Logged in as:"
         fbProfilePictureView.profileID = user.objectID?
+
+        // Make a call to the API to store user Data
+        // Do this only if we dont have a user yet
+        var postLoginRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.POSTLOGIN)!)
+        var session = NSURLSession.sharedSession()
+        var err: NSError?
+
+        postLoginRequest.HTTPMethod = "POST"
+        postLoginRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(user, options: nil, error: &err)
+
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(postLoginRequest) {(data, response, error) in
+            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+        }
+
+        task.resume()
     }
     
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
