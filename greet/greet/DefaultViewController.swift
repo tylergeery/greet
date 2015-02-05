@@ -9,8 +9,9 @@
 import UIKit
 
 class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDelegate {
-    
+
     var sidebar:Sidebar = Sidebar()
+    var user:FBGraphUser?
 
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var fbProfilePictureView : FBProfilePictureView!
@@ -25,16 +26,17 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
         
         sidebar = Sidebar(sourceView: self.view, menuItems: ["First Item", "Second Item", "Third Item"])
     }
-    
+
 
     // Facebook Delegate Methods
-    
+
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
         println("User logged in")
         println("This would be the time to perform a segue")
     }
-    
+
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
+        self.user = user
         nameLabel.text = user.name
         statusLabel.text = "Logged in as:"
         fbProfilePictureView.profileID = user.objectID?
@@ -54,17 +56,17 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
 
         task.resume()
     }
-    
+
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
         nameLabel.text = nil
         statusLabel.text = nil
         fbProfilePictureView.profileID = nil
     }
-    
+
     func loginView(loginView: FBLoginView!, handleError:NSError) {
         println("Error: \(handleError.localizedDescription)")
     }
-    
+
     func sidebarDidSelectButtonAtPath(index: Int) {
         
     }
