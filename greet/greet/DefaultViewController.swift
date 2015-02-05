@@ -11,7 +11,7 @@ import UIKit
 class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDelegate {
 
     var sidebar:Sidebar = Sidebar()
-    var user:FBGraphUser?
+    var fbUser:NSString?
 
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var fbProfilePictureView : FBProfilePictureView!
@@ -22,7 +22,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fbLoginView.delegate = self
-        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends"]
+        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends, user_photos"]
         
         sidebar = Sidebar(sourceView: self.view, menuItems: ["First Item", "Second Item", "Third Item"])
     }
@@ -31,12 +31,12 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
     // Facebook Delegate Methods
 
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
-        println("User logged in")
-        println("This would be the time to perform a segue")
+        // println("User logged in")
+        // println("This would be the time to perform a segue")
     }
 
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
-        self.user = user
+        fbUser = user.objectID
         nameLabel.text = user.name
         statusLabel.text = "Logged in as:"
         fbProfilePictureView.profileID = user.objectID?
@@ -44,8 +44,9 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
         // Make a call to the API to store user Data
         // Do this only if we dont have a user yet
         var postLoginRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.POSTLOGIN)!)
-        var session = NSURLSession.sharedSession()
+        var postPhotosRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.POSTPHOTOS)!)
         var err: NSError?
+        var photoErr: NSError?
 
         postLoginRequest.HTTPMethod = "POST"
         postLoginRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(user, options: nil, error: &err)
@@ -55,6 +56,25 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
         }
 
         task.resume()
+
+        var completionHandler = {
+            connection, result, error in
+                var data = result["data"]
+                postPhotosRequest.HTTPMethod = "POST"
+                postPhotosRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(data!!, options: nil, error: &photoErr)
+
+                let photoTask = NSURLSession.sharedSession().dataTaskWithRequest(postPhotosRequest) {(result, response, error) in
+                    println(NSString(data: result, encoding: NSUTF8StringEncoding))
+                }
+
+                photoTask.resume()
+            } as FBRequestHandler;
+        
+        // Request the profile info
+        FBRequestConnection.startWithGraphPath(
+            "/me/photos",
+            completionHandler: completionHandler
+        );
     }
 
     func loginViewShowingLoggedOutUser(loginView: FBLoginView!) {
