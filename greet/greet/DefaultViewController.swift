@@ -8,7 +8,9 @@
 
 import UIKit
 
-class DefaultViewController: UIViewController, FBLoginViewDelegate {
+class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDelegate {
+    
+    var sidebar:Sidebar = Sidebar()
 
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var fbProfilePictureView : FBProfilePictureView!
@@ -20,6 +22,8 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
         super.viewDidLoad()
         self.fbLoginView.delegate = self
         self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends"]
+        
+        sidebar = Sidebar(sourceView: self.view, menuItems: ["First Item", "Second Item", "Third Item"])
     }
     
 
@@ -59,6 +63,10 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
     
     func loginView(loginView: FBLoginView!, handleError:NSError) {
         println("Error: \(handleError.localizedDescription)")
+    }
+    
+    func sidebarDidSelectButtonAtPath(index: Int) {
+        
     }
 
     override func didReceiveMemoryWarning() {
