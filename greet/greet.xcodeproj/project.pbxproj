@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1024FB091A84A59B00241CFE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1024FB081A84A59B00241CFE /* Helpers.swift */; };
 		10700DD01A8320BB005C167B /* SidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10700DCF1A8320BB005C167B /* SidebarTableViewController.swift */; };
 		10700DD21A832BDE005C167B /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10700DD11A832BDE005C167B /* Sidebar.swift */; };
 		10BDC4011A7F49DF00E8BC77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BDC4001A7F49DF00E8BC77 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1024FB081A84A59B00241CFE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		10700DCF1A8320BB005C167B /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewController.swift; sourceTree = "<group>"; };
 		10700DD11A832BDE005C167B /* Sidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		10BDC3FB1A7F49DF00E8BC77 /* greet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = greet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 			children = (
 				10BDC4001A7F49DF00E8BC77 /* AppDelegate.swift */,
 				10BDC4021A7F49DF00E8BC77 /* DefaultViewController.swift */,
+				1024FB081A84A59B00241CFE /* Helpers.swift */,
 				10700DCF1A8320BB005C167B /* SidebarTableViewController.swift */,
 				10700DD11A832BDE005C167B /* Sidebar.swift */,
 				10BDC4231A7F503200E8BC77 /* Bridge-Header.h */,
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10700DD21A832BDE005C167B /* Sidebar.swift in Sources */,
+				1024FB091A84A59B00241CFE /* Helpers.swift in Sources */,
 				10700DD01A8320BB005C167B /* SidebarTableViewController.swift in Sources */,
 				10BDC4031A7F49DF00E8BC77 /* DefaultViewController.swift in Sources */,
 				10BDC4011A7F49DF00E8BC77 /* AppDelegate.swift in Sources */,

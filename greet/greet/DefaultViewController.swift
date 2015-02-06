@@ -44,31 +44,31 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
         // Make a call to the API to store user Data
         // Do this only if we dont have a user yet
         var postLoginRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.POSTLOGIN)!)
-        var postPhotosRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.POSTPHOTOS)!)
-        var err: NSError?
-        var photoErr: NSError?
 
         postLoginRequest.HTTPMethod = "POST"
-        postLoginRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(user, options: nil, error: &err)
-
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(postLoginRequest) {(data, response, error) in
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-        }
-
-        task.resume()
+        postLoginRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
         var completionHandler = {
-            connection, result, error in
-                var data = result["data"]
-                postPhotosRequest.HTTPMethod = "POST"
-                postPhotosRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(data!!, options: nil, error: &photoErr)
+            (connection, result, error) in
+            
+            if let data = result["data"] as AnyObject!! {
+                let userJSONString = self.JSONStringify(user)
+                let resultJSONString = self.JSONStringify(result)
 
-                let photoTask = NSURLSession.sharedSession().dataTaskWithRequest(postPhotosRequest) {(result, response, error) in
+                // TODO: FIX THIS BS
+                let postJSONString = "\(userJSONString.substringToIndex(userJSONString.endIndex.predecessor())),\(resultJSONString.substringFromIndex(resultJSONString.startIndex.successor()))"
+
+                println(postJSONString)
+                postLoginRequest.HTTPBody = postJSONString.dataUsingEncoding(NSUTF8StringEncoding)!
+                
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(postLoginRequest) {(result, response, error) in
                     println(NSString(data: result, encoding: NSUTF8StringEncoding))
                 }
+                
+                task.resume()
+            }
 
-                photoTask.resume()
-            } as FBRequestHandler;
+        } as FBRequestHandler;
         
         // Request the profile info
         FBRequestConnection.startWithGraphPath(
@@ -89,6 +89,22 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
 
     func sidebarDidSelectButtonAtPath(index: Int) {
         
+    }
+
+    func JSONStringify(value: AnyObject) -> String {
+        if NSJSONSerialization.isValidJSONObject(value) {
+            if let data = NSJSONSerialization.dataWithJSONObject(value, options: nil, error: nil) {
+                if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                    return string
+                }
+            }
+        }
+        return ""
+    }
+
+    func prepForPost(value: AnyObject) -> NSData {
+        let string = self.JSONStringify(value)
+        return string.dataUsingEncoding(NSUTF8StringEncoding)!
     }
 
     override func didReceiveMemoryWarning() {
