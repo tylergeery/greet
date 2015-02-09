@@ -23,7 +23,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
         self.fbLoginView.delegate = self
         self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends, user_photos"]
         
-        sidebar = Sidebar(sourceView: self.view, menuItems: ["Search", "Profile", "Info"])
+        sidebar = Sidebar(sourceView: self.view, menuItems: ["Explore", "Groups", "Profile", "Info"])
     }
 
 
@@ -32,6 +32,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
         // println("User logged in")
         // println("This would be the time to perform a segue")
+        performSegueWithIdentifier("loggedIn", sender: self)
     }
 
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
