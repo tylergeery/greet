@@ -32,7 +32,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
         // println("User logged in")
         // println("This would be the time to perform a segue")
-        performSegueWithIdentifier("loggedIn", sender: self)
+//        performSegueWithIdentifier("loggedIn", sender: self)
     }
 
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
@@ -63,21 +63,28 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
                     let userJSONString = self.JSONStringify(user)
                     let resultJSONString = self.JSONStringify(result)
                     
-                    // TODO: FIX THIS BS
+                    // TODO: Figure out how messed this is
                     if (!userJSONString.isEmpty && !resultJSONString.isEmpty) {
                         let postJSONString = "\(userJSONString.substringToIndex(userJSONString.endIndex.predecessor())),\(resultJSONString.substringFromIndex(resultJSONString.startIndex.successor()))"
                         
                         postLoginRequest.HTTPBody = postJSONString.dataUsingEncoding(NSUTF8StringEncoding)!
                         
                         let task = NSURLSession.sharedSession().dataTaskWithRequest(postLoginRequest) {(result, response, error) in
+                            // Check for success and then verify user account
                             println(NSString(data: result, encoding: NSUTF8StringEncoding))
+                            if let message = data["success"] as String!! {
+                                if message == "Congratulations" {
+                                    userDefaults.setObject(1, forKey: "regComplete")
+                                    userDefaults.synchronize()
+                                }
+                            }
                         }
                         
                         task.resume()
                     }
                 }
                 
-                } as FBRequestHandler;
+            } as FBRequestHandler;
             
             // Request the profile info
             FBRequestConnection.startWithGraphPath(
