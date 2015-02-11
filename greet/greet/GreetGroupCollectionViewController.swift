@@ -10,7 +10,9 @@ import UIKit
 
 let reuseIdentifier = "Cell"
 
-class GreetGroupCollectionViewController: UICollectionViewController {
+class GreetGroupCollectionViewController: UICollectionViewController, SidebarDelegate {
+
+    var sidebar:Sidebar = Sidebar()
     
     private let reuseIdentifier = "personCell"
 
@@ -24,11 +26,36 @@ class GreetGroupCollectionViewController: UICollectionViewController {
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        sidebar = Sidebar(sourceView: self.view, menuItems: ["Explore", "Groups", "Profile", "Info"])
+        sidebar.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func sidebarDidSelectButtonAtPath(index: Int) {
+        // Perform segue navigation
+        sidebar.showSidebar(false)
+        
+        switch(index) {
+            case 0:
+                // Dont really need to do anything here
+            break
+            case 1:
+                // Should go to the groups page
+            break
+            case 2:
+                // Should go to the profile page
+                self.performSegueWithIdentifier("exploreToSettings", sender: self)
+            break;
+            case 3:
+                // Should go to the info page
+            break
+            default:
+                println("Default")
+        }
     }
 
     /*

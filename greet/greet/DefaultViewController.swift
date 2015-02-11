@@ -8,9 +8,10 @@
 
 import UIKit
 
-class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDelegate {
+class DefaultViewController: UIViewController, FBLoginViewDelegate {
 
-    var sidebar:Sidebar = Sidebar()
+    // Check User Defaults
+    let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
 
     @IBOutlet var fbLoginView : FBLoginView!
     @IBOutlet var fbProfilePictureView : FBProfilePictureView!
@@ -22,8 +23,6 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
         super.viewDidLoad()
         self.fbLoginView.delegate = self
         self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends, user_photos"]
-        
-        sidebar = Sidebar(sourceView: self.view, menuItems: ["Explore", "Groups", "Profile", "Info"])
     }
 
 
@@ -32,7 +31,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
         // println("User logged in")
         // println("This would be the time to perform a segue")
-//        performSegueWithIdentifier("loggedIn", sender: self)
+        performSegueWithIdentifier("loggedIn", sender: self)
     }
 
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
@@ -40,57 +39,12 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
         statusLabel.text = "Logged in as:"
         fbProfilePictureView.profileID = user.objectID?
 
-        // Check User Defaults
-        let userDefaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        if(self.userDefaults.objectForKey("userId") == nil) {
+            self.userDefaults.setObject(user.objectID, forKey: "userId")
+            self.userDefaults.setObject(user.name, forKey: "name")
+            self.userDefaults.synchronize()
 
-        if(userDefaults.objectForKey("userId") == nil) {
-            userDefaults.setObject(user.objectID, forKey: "userId")
-            userDefaults.setObject(user.name, forKey: "name")
-            userDefaults.synchronize()
-            
-            // Now we can do the post to API to save user data
-            // Make a call to the API to store user Data
-            // Do this only if we dont have a user yet
-            var postLoginRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.POSTLOGIN)!)
-            
-            postLoginRequest.HTTPMethod = "POST"
-            postLoginRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            var completionHandler = {
-                (connection, result, error) in
-                
-                if let data = result["data"] as AnyObject!! {
-                    let userJSONString = self.JSONStringify(user)
-                    let resultJSONString = self.JSONStringify(result)
-                    
-                    // TODO: Figure out how messed this is
-                    if (!userJSONString.isEmpty && !resultJSONString.isEmpty) {
-                        let postJSONString = "\(userJSONString.substringToIndex(userJSONString.endIndex.predecessor())),\(resultJSONString.substringFromIndex(resultJSONString.startIndex.successor()))"
-                        
-                        postLoginRequest.HTTPBody = postJSONString.dataUsingEncoding(NSUTF8StringEncoding)!
-                        
-                        let task = NSURLSession.sharedSession().dataTaskWithRequest(postLoginRequest) {(result, response, error) in
-                            // Check for success and then verify user account
-                            println(NSString(data: result, encoding: NSUTF8StringEncoding))
-                            if let message = data["success"] as String!! {
-                                if message == "Congratulations" {
-                                    userDefaults.setObject(1, forKey: "regComplete")
-                                    userDefaults.synchronize()
-                                }
-                            }
-                        }
-                        
-                        task.resume()
-                    }
-                }
-                
-            } as FBRequestHandler;
-            
-            // Request the profile info
-            FBRequestConnection.startWithGraphPath(
-                "/me/photos",
-                completionHandler: completionHandler
-            );
+            self.sendFacebookData(user);
         } else {
             // Welcome back user!
             println(userDefaults.objectForKey("userId"))
@@ -108,9 +62,51 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate, SidebarDeleg
     func loginView(loginView: FBLoginView!, handleError:NSError) {
         println("Error: \(handleError.localizedDescription)")
     }
+    
+    func sendFacebookData(user: FBGraphUser) {
+        // Now we can do the post to API to save user data
+        // Make a call to the API to store user Data
+        // Do this only if we dont have a user yet
+        var postLoginRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.POSTLOGIN)!)
+        
+        postLoginRequest.HTTPMethod = "POST"
+        postLoginRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        var completionHandler = {
+            (connection, result, error) in
+            
+            if let data = result["data"] as AnyObject!! {
+                let userJSONString = self.JSONStringify(user)
+                let resultJSONString = self.JSONStringify(result)
+                
+                // TODO: Figure out how messed this is
+                if (!userJSONString.isEmpty && !resultJSONString.isEmpty) {
+                    let postJSONString = "\(userJSONString.substringToIndex(userJSONString.endIndex.predecessor())),\(resultJSONString.substringFromIndex(resultJSONString.startIndex.successor()))"
+                    
+                    postLoginRequest.HTTPBody = postJSONString.dataUsingEncoding(NSUTF8StringEncoding)!
+                    
+                    let task = NSURLSession.sharedSession().dataTaskWithRequest(postLoginRequest) {(result, response, error) in
+                        // Check for success and then verify user account
+                        println(NSString(data: result, encoding: NSUTF8StringEncoding))
+                        if let message = data["success"] as String!! {
+                            if message == "Congratulations" {
+                                self.userDefaults.setObject(1, forKey: "regComplete")
+                                self.userDefaults.synchronize()
+                            }
+                        }
+                    }
+                    
+                    task.resume()
+                }
+            }
 
-    func sidebarDidSelectButtonAtPath(index: Int) {
-        // Perform segue navigation
+        } as FBRequestHandler;
+        
+        // Request the profile info
+        FBRequestConnection.startWithGraphPath(
+            "/me/photos",
+            completionHandler: completionHandler
+        );
     }
 
     func JSONStringify(value: AnyObject) -> String {

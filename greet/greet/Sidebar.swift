@@ -106,7 +106,8 @@ class Sidebar: NSObject, SidebarTableViewControllerDelegate {
         animator.addBehavior(sidebarBehavior)
     }
 
-    func sidebarControlDidSelectRow(index: NSInteger) {
+    func sidebarControlDidSelectRow(index: Int) {
+        println(delegate);
         delegate?.sidebarDidSelectButtonAtPath(index)
     }
 }

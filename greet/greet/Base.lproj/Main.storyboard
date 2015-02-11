@@ -66,6 +66,39 @@
             </objects>
             <point key="canvasLocation" x="1252" y="389"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="mqw-FT-UCm">
+            <objects>
+                <viewController id="FRp-sl-0hG" customClass="ProfileViewController" customModule="greet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LeA-JP-JlT"/>
+                        <viewControllerLayoutGuide type="bottom" id="nnD-4V-JiH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k7f-oR-68R">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iyl-Mg-Bq3">
+                                <rect key="frame" x="272" y="285" width="57" height="30"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Iyl-Mg-Bq3" secondAttribute="centerY" id="9Du-oj-BEx"/>
+                            <constraint firstAttribute="centerX" secondItem="Iyl-Mg-Bq3" secondAttribute="centerX" id="A2I-Q2-Ne4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="7CF-Ba-iYy" kind="showDetail" identifier="settingsToExplore" id="40T-ZZ-PJS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9J-dz-pFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2711" y="661"/>
+        </scene>
         <!--Greet Group Collection View Controller-->
         <scene sceneID="TaU-eG-0r3">
             <objects>
@@ -96,10 +129,13 @@
                             <outlet property="delegate" destination="7CF-Ba-iYy" id="gjH-8B-Amf"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <segue destination="FRp-sl-0hG" kind="showDetail" identifier="exploreToSettings" id="HYN-Uv-PVv"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mxP-tM-9E9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1978" y="389"/>
+            <point key="canvasLocation" x="2162" y="-83"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XNa-S8-TlI">
@@ -120,4 +156,7 @@
             <point key="canvasLocation" x="440" y="1050"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="40T-ZZ-PJS"/>
+    </inferredMetricsTieBreakers>
 </document>

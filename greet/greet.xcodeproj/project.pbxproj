@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1024FB091A84A59B00241CFE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1024FB081A84A59B00241CFE /* Helpers.swift */; };
 		1024FB3C1A89E72800241CFE /* GreetGroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1024FB3B1A89E72800241CFE /* GreetGroupCollectionViewController.swift */; };
+		1024FB3E1A8B36F600241CFE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1024FB3D1A8B36F600241CFE /* ProfileViewController.swift */; };
 		10700DD01A8320BB005C167B /* SidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10700DCF1A8320BB005C167B /* SidebarTableViewController.swift */; };
 		10700DD21A832BDE005C167B /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10700DD11A832BDE005C167B /* Sidebar.swift */; };
 		10BDC4011A7F49DF00E8BC77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BDC4001A7F49DF00E8BC77 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		1024FB081A84A59B00241CFE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1024FB3B1A89E72800241CFE /* GreetGroupCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetGroupCollectionViewController.swift; sourceTree = "<group>"; };
+		1024FB3D1A8B36F600241CFE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		10700DCF1A8320BB005C167B /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewController.swift; sourceTree = "<group>"; };
 		10700DD11A832BDE005C167B /* Sidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		10BDC3FB1A7F49DF00E8BC77 /* greet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = greet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				10BDC4231A7F503200E8BC77 /* Bridge-Header.h */,
 				10BDC4041A7F49DF00E8BC77 /* Main.storyboard */,
 				1024FB3B1A89E72800241CFE /* GreetGroupCollectionViewController.swift */,
+				1024FB3D1A8B36F600241CFE /* ProfileViewController.swift */,
 				10BDC4071A7F49DF00E8BC77 /* Images.xcassets */,
 				10BDC4091A7F49DF00E8BC77 /* LaunchScreen.xib */,
 				10BDC3FE1A7F49DF00E8BC77 /* Supporting Files */,
@@ -247,6 +250,7 @@
 				10BDC4031A7F49DF00E8BC77 /* DefaultViewController.swift in Sources */,
 				1024FB3C1A89E72800241CFE /* GreetGroupCollectionViewController.swift in Sources */,
 				10BDC4011A7F49DF00E8BC77 /* AppDelegate.swift in Sources */,
+				1024FB3E1A8B36F600241CFE /* ProfileViewController.swift in Sources */,
 				10BDC4251A809B8900E8BC77 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
