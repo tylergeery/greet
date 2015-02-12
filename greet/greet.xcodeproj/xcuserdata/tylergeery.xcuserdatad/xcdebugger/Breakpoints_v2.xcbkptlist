@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "greet/GreetGroupCollectionViewController.swift"
-            timestampString = "445330875.279726"
+            timestampString = "445416160.440305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "sidebarDidSelectButtonAtPath(_:)"
             landmarkType = "5">
          </BreakpointContent>

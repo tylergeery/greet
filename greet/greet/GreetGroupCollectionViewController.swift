@@ -15,6 +15,7 @@ class GreetGroupCollectionViewController: UICollectionViewController, SidebarDel
     var sidebar:Sidebar = Sidebar()
     
     private let reuseIdentifier = "personCell"
+    var peeps:[AnyObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,25 @@ class GreetGroupCollectionViewController: UICollectionViewController, SidebarDel
         // Do any additional setup after loading the view.
         sidebar = Sidebar(sourceView: self.view, menuItems: ["Explore", "Groups", "Profile", "Info"])
         sidebar.delegate = self
+
+        var exploreRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.ALL)!)
+        exploreRequest.HTTPMethod = "GET"
+
+        var peeps:[NSObject]
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(exploreRequest) {(result, response, error) in
+            let jsonArray = NSJSONSerialization.JSONObjectWithData(result, options: nil, error: nil) as [NSDictionary]
+
+            for user in jsonArray {
+                self.peeps.append(user)
+                if let images = user["images"] as? [NSString] {
+                    print(images[0])
+                }
+            }
+
+            self.collectionView?.reloadData()
+        }
+
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,21 +91,31 @@ class GreetGroupCollectionViewController: UICollectionViewController, SidebarDel
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return 0
+        return self.peeps.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as GreetGroupCollectionViewCell
     
         // Configure the cell
-    
+        let imageObj:AnyObject = self.peeps[indexPath.row]
+        if let images = imageObj["images"] as? [NSString] {
+            if let url = NSURL(string: images[0]) {
+                if let data = NSData(contentsOfURL: url){
+                    cell.profilePhoto.image = UIImage(data: data)
+                }
+            }
+        }
+
+        if let name = imageObj["name"] as? NSString {
+            cell.profileName.text = name
+        }
+
         return cell
     }
 

@@ -13,6 +13,7 @@ struct Constants {
         static let BASE = "http://localhost:3000/"
 
         struct USER {
+            static let ALL = Constants.API.BASE + "user/all"
             static let POSTLOGIN = Constants.API.BASE + "user/postlogin"
             static let POSTPHOTOS = Constants.API.BASE + "user/postphotos"
             static let ME = Constants.API.BASE + "user/me"
