@@ -22,7 +22,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fbLoginView.delegate = self
-        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends, user_photos"]
+        self.fbLoginView.readPermissions = ["user_photos, public_profile", "email", "user_friends"]
     }
 
 
@@ -31,7 +31,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
         // println("User logged in")
         // println("This would be the time to perform a segue")
-        performSegueWithIdentifier("loggedIn", sender: self)
+        // performSegueWithIdentifier("loggedIn", sender: self)
     }
 
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
@@ -39,16 +39,16 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
         statusLabel.text = "Logged in as:"
         fbProfilePictureView.profileID = user.objectID?
 
-        if(self.userDefaults.objectForKey("userId") == nil) {
+        //if(self.userDefaults.objectForKey("userId") == nil) {
             self.userDefaults.setObject(user.objectID, forKey: "userId")
             self.userDefaults.setObject(user.name, forKey: "name")
             self.userDefaults.synchronize()
 
             self.sendFacebookData(user);
-        } else {
+        //} else {
             // Welcome back user!
             println(userDefaults.objectForKey("userId"))
-        }
+        //}
 
         // Get the user's geographic information
     }
@@ -74,7 +74,9 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
         
         var completionHandler = {
             (connection, result, error) in
-            
+
+            println("result")
+            println(result)
             if let data = result["data"] as AnyObject!! {
                 let userJSONString = self.JSONStringify(user)
                 let resultJSONString = self.JSONStringify(result)
@@ -82,9 +84,11 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
                 // TODO: Figure out how messed this is
                 if (!userJSONString.isEmpty && !resultJSONString.isEmpty) {
                     let postJSONString = "\(userJSONString.substringToIndex(userJSONString.endIndex.predecessor())),\(resultJSONString.substringFromIndex(resultJSONString.startIndex.successor()))"
-                    
+
+                    println(resultJSONString)
                     postLoginRequest.HTTPBody = postJSONString.dataUsingEncoding(NSUTF8StringEncoding)!
-                    
+
+                    println("bullshit")
                     let task = NSURLSession.sharedSession().dataTaskWithRequest(postLoginRequest) {(result, response, error) in
                         // Check for success and then verify user account
                         println(NSString(data: result, encoding: NSUTF8StringEncoding))
@@ -104,7 +108,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
         
         // Request the profile info
         FBRequestConnection.startWithGraphPath(
-            "/me/photos",
+            "/me/photos/uploaded",
             completionHandler: completionHandler
         );
     }

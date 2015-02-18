@@ -59,12 +59,52 @@
                         <outlet property="fbProfilePictureView" destination="7cZ-WT-D3Q" id="uF1-iM-x7D"/>
                         <outlet property="nameLabel" destination="x6m-zd-55t" id="l5E-DJ-PJh"/>
                         <outlet property="statusLabel" destination="aQc-Uj-ReL" id="Co9-jh-4AB"/>
-                        <segue destination="7CF-Ba-iYy" kind="showDetail" identifier="loggedIn" id="Mot-LK-fOO"/>
+                        <segue destination="95Z-Jx-hB7" kind="show" identifier="loggedIn" id="iYE-tR-Lfs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1252" y="389"/>
+        </scene>
+        <!--Greet Group View Controller-->
+        <scene sceneID="VHt-Yh-Tl8">
+            <objects>
+                <viewController id="95Z-Jx-hB7" customClass="GreetGroupViewController" customModule="greet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="09u-PM-YnA"/>
+                        <viewControllerLayoutGuide type="bottom" id="p2B-At-CDC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sAU-dt-HxS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g0m-xA-OWi">
+                                <rect key="frame" x="-6" y="-8" width="606" height="616"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZfP-fn-hD7">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1Au-4h-w94">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DrW-4h-8W3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1997" y="13"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mqw-FT-UCm">
@@ -91,65 +131,10 @@
                             <constraint firstAttribute="centerX" secondItem="Iyl-Mg-Bq3" secondAttribute="centerX" id="A2I-Q2-Ne4"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="7CF-Ba-iYy" kind="show" identifier="settingsToExplore" id="40T-ZZ-PJS"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9J-dz-pFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2711" y="661"/>
-        </scene>
-        <!--Greet Group Collection View Controller-->
-        <scene sceneID="TaU-eG-0r3">
-            <objects>
-                <collectionViewController id="7CF-Ba-iYy" customClass="GreetGroupCollectionViewController" customModule="greet" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YLN-P1-Ref">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZH1-af-NgT">
-                            <size key="itemSize" width="295" height="301"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fpN-ZT-E0d" customClass="GreetGroupCollectionViewCell" customModule="greet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="295" height="301"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OAo-re-7oC" userLabel="profilePhoto">
-                                            <rect key="frame" x="0.0" y="0.0" width="295" height="253"/>
-                                        </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Person Name" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7O6-nc-1Zh" userLabel="profileName">
-                                            <rect key="frame" x="0.0" y="258" width="295" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <outlet property="profileName" destination="7O6-nc-1Zh" id="v3f-FQ-1iU"/>
-                                    <outlet property="profilePhoto" destination="OAo-re-7oC" id="GCv-zt-lDi"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="7CF-Ba-iYy" id="rXW-b5-imr"/>
-                            <outlet property="delegate" destination="7CF-Ba-iYy" id="gjH-8B-Amf"/>
-                        </connections>
-                    </collectionView>
-                    <connections>
-                        <segue destination="FRp-sl-0hG" kind="show" identifier="exploreToSettings" id="HYN-Uv-PVv"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mxP-tM-9E9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2162" y="-83"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XNa-S8-TlI">
@@ -170,7 +155,4 @@
             <point key="canvasLocation" x="440" y="1050"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="40T-ZZ-PJS"/>
-    </inferredMetricsTieBreakers>
 </document>
