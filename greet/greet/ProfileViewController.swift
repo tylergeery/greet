@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController, SidebarDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        sidebar = Sidebar(sourceView: self.view, menuItems: ["Explore", "Groups", "Profile", "Info"])
+        sidebar = Sidebar(sourceView: self.view, menuItems: ["Explore", "Groups", "Profile", "Info", "Logout"])
         sidebar.delegate = self
     }
 
@@ -39,9 +39,12 @@ class ProfileViewController: UIViewController, SidebarDelegate {
         break
         case 2:
             // Should go to the profile page
-        break;
+        break
         case 3:
             // Should go to the info page
+        break
+        case 4:
+            FBSession.activeSession().closeAndClearTokenInformation()
         break
         default:
             println("Default")

@@ -35,7 +35,7 @@ class GreetGroupViewController: UIViewController, UICollectionViewDelegateFlowLa
         self.view.addSubview(collectionView!)
         
         // Get the people resources
-        sidebar = Sidebar(sourceView: self.view, menuItems: ["Explore", "Groups", "Profile", "Info"])
+        sidebar = Sidebar(sourceView: self.view, menuItems: ["Explore", "Groups", "Profile", "Info", "Logout"])
         sidebar.delegate = self
         
         var exploreRequest = NSMutableURLRequest(URL: NSURL(string: Constants.API.USER.ALL)!)
@@ -111,17 +111,20 @@ class GreetGroupViewController: UIViewController, UICollectionViewDelegateFlowLa
         switch(index) {
         case 0:
             // Dont really need to do anything here
-            break
+        break
         case 1:
             // Should go to the groups page
-            break
+        break
         case 2:
             // Should go to the profile page
             self.performSegueWithIdentifier("exploreToSettings", sender: self)
-            break;
+        break
         case 3:
             // Should go to the info page
-            break
+        break
+        case 4:
+            FBSession.activeSession().closeAndClearTokenInformation()
+        break
         default:
             println("Default")
         }

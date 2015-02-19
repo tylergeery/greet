@@ -19,8 +19,17 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
 
+    override func loadView() {
+        super.loadView()
+
+        if(FBSession.activeSession().isOpen) {
+            performSegueWithIdentifier("loggedIn", sender: self)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.fbLoginView.delegate = self
         self.fbLoginView.readPermissions = ["user_photos, public_profile", "email", "user_friends"]
     }
@@ -31,7 +40,7 @@ class DefaultViewController: UIViewController, FBLoginViewDelegate {
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
         // println("User logged in")
         // println("This would be the time to perform a segue")
-        // performSegueWithIdentifier("loggedIn", sender: self)
+         performSegueWithIdentifier("loggedIn", sender: self)
     }
 
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
