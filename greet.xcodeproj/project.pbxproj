@@ -20,6 +20,7 @@
 		10C1C9FC1A99435300FEDFAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C1C9FB1A99435300FEDFAF /* Constants.swift */; };
 		10C1C9FE1A99440200FEDFAF /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C1C9FD1A99440200FEDFAF /* DefaultViewController.swift */; };
 		10C1CBE21A99639F00FEDFAF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10C1CBE11A99639F00FEDFAF /* FacebookSDK.framework */; };
+		10C1CBE51A9EFD5500FEDFAF /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C1CBE41A9EFD5500FEDFAF /* GroupsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		10C1C9FB1A99435300FEDFAF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		10C1C9FD1A99440200FEDFAF /* DefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
 		10C1CBE11A99639F00FEDFAF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		10C1CBE41A9EFD5500FEDFAF /* GroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		10C1C9CD1A993EFA00FEDFAF /* greet */ = {
 			isa = PBXGroup;
 			children = (
+				10C1CBE41A9EFD5500FEDFAF /* GroupsTableViewController.swift */,
 				10C1C9D01A993EFA00FEDFAF /* AppDelegate.swift */,
 				10C1C9D21A993EFA00FEDFAF /* FirstViewController.swift */,
 				10C1C9FD1A99440200FEDFAF /* DefaultViewController.swift */,
@@ -248,6 +251,7 @@
 			files = (
 				10C1C9D51A993EFA00FEDFAF /* SecondViewController.swift in Sources */,
 				10C1C9D11A993EFA00FEDFAF /* AppDelegate.swift in Sources */,
+				10C1CBE51A9EFD5500FEDFAF /* GroupsTableViewController.swift in Sources */,
 				10C1C9FE1A99440200FEDFAF /* DefaultViewController.swift in Sources */,
 				10C1C9D31A993EFA00FEDFAF /* FirstViewController.swift in Sources */,
 				10C1C9F61A9942C500FEDFAF /* Helpers.swift in Sources */,
