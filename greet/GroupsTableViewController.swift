@@ -39,6 +39,9 @@ class GroupsTableViewController: UITableViewController {
         return 0
     }
 
+    @IBAction func addGroup(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("addGroup", sender: self)
+    }
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

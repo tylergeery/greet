@@ -21,9 +21,13 @@ class GreetGroupViewController: UIViewController, UICollectionViewDelegateFlowLa
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
 
         // Do any additional setup after loading the view.
+        let width: CGFloat = self.view.bounds.size.width / 2
+        println("width")
+        println(width)
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.itemSize = CGSize(width: width, height: 100)
+        layout.minimumInteritemSpacing = 0.0;
 
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView!.dataSource = self
@@ -38,14 +42,14 @@ class GreetGroupViewController: UIViewController, UICollectionViewDelegateFlowLa
         var peeps:[NSObject]
         let task = NSURLSession.sharedSession().dataTaskWithRequest(exploreRequest) {(result, response, error) in
             
-            let jsonArray = NSJSONSerialization.JSONObjectWithData(result, options: nil, error: nil) as [NSDictionary]
-            
-            for user in jsonArray {
-                self.peeps.append(user)
+            if let jsonArray = NSJSONSerialization.JSONObjectWithData(result, options: nil, error: nil) as? [NSDictionary] {
+                for user in jsonArray {
+                    self.peeps.append(user)
+                }
+                
+                self.collectionView?.reloadData()
+                println("peeps loaded")
             }
-
-            self.collectionView?.reloadData()
-            println("peeps loaded")
         }
         
         task.resume()
