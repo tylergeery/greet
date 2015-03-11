@@ -10,6 +10,5 @@
 #define greet_Bridge_Header_h
 
 #import <FacebookSDK/FacebookSDK.h>
-#import "PNImports.h"
 
 #endif
