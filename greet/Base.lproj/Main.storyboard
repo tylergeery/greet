@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L0d-QK-iNg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L0d-QK-iNg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -90,19 +90,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="195" y="279" width="209.5" height="41.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="192" y="329" width="215.5" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhP-oP-SpZ">
                                 <rect key="frame" x="0.0" y="0.0" width="302" height="46"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -125,24 +112,94 @@
                                     <action selector="setButtonLocationState:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="kFu-Zd-bcq"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fBq-cx-sBR" userLabel="Social View">
+                                <rect key="frame" x="0.0" y="52" width="599" height="497"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="first" translatesAutoresizingMaskIntoConstraints="NO" id="zaE-3R-1Oq">
+                                        <rect key="frame" x="0.0" y="0.0" width="599" height="497"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4jM-l8-c2B" userLabel="Location View">
+                                <rect key="frame" x="0.0" y="49" width="599" height="502"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="Qqe-UB-2nP">
+                                        <rect key="frame" x="34" y="55" width="530" height="31"/>
+                                        <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="locationPreferenceChanged:" destination="8rJ-Kc-sve" eventType="valueChanged" id="4rm-Z7-o6u"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Radius:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNq-VI-h4w">
+                                        <rect key="frame" x="225" y="24" width="58" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="25 mi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i21-Fd-eLX" userLabel="Location Label">
+                                        <rect key="frame" x="315" y="26" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZDj-OW-bWP" userLabel="Dummy Center View">
+                                        <rect key="frame" x="291" y="29" width="16" height="11"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="10" id="6rH-V9-t2D"/>
+                                            <constraint firstAttribute="height" constant="10" id="bYi-Ic-nkr"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L3E-Eu-b6i" userLabel="Bar Preference View">
+                                        <rect key="frame" x="8" y="93" width="591" height="119"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaO-6l-Dxr" userLabel="Bar Preference Button">
+                                                <rect key="frame" x="0.0" y="-14" width="218" height="133"/>
+                                                <state key="normal" title="Button" backgroundImage="Image">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="barPreferenceButtonPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Hbr-p2-JJo"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Qqe-UB-2nP" firstAttribute="leading" secondItem="4jM-l8-c2B" secondAttribute="leadingMargin" constant="10" id="4Bm-w8-u7B"/>
+                                    <constraint firstItem="i21-Fd-eLX" firstAttribute="leading" secondItem="ZDj-OW-bWP" secondAttribute="trailing" constant="2" id="Eni-Ej-bkB"/>
+                                    <constraint firstItem="i21-Fd-eLX" firstAttribute="width" secondItem="WNq-VI-h4w" secondAttribute="width" id="I0B-83-lj5"/>
+                                    <constraint firstAttribute="centerX" secondItem="ZDj-OW-bWP" secondAttribute="centerX" id="YXU-xy-pqy"/>
+                                    <constraint firstAttribute="centerX" secondItem="Qqe-UB-2nP" secondAttribute="centerX" id="iPc-KM-4ud"/>
+                                    <constraint firstItem="L3E-Eu-b6i" firstAttribute="leading" secondItem="4jM-l8-c2B" secondAttribute="leading" id="pPJ-is-a9M"/>
+                                    <constraint firstItem="ZDj-OW-bWP" firstAttribute="leading" secondItem="WNq-VI-h4w" secondAttribute="trailing" constant="2" id="pYV-bf-QKI"/>
+                                    <constraint firstAttribute="centerX" secondItem="L3E-Eu-b6i" secondAttribute="centerX" id="pxf-Lz-3GW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="4jM-l8-c2B" secondAttribute="trailing" constant="5" id="3q4-aY-qDv"/>
                             <constraint firstItem="zYC-6g-4Ol" firstAttribute="leading" secondItem="yhP-oP-SpZ" secondAttribute="trailing" id="Ayz-V8-eI2"/>
                             <constraint firstItem="yhP-oP-SpZ" firstAttribute="width" secondItem="zYC-6g-4Ol" secondAttribute="width" id="Cct-gc-nW2"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
                             <constraint firstItem="yhP-oP-SpZ" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="Ggq-gE-4hR"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zYC-6g-4Ol" secondAttribute="trailing" constant="-20" id="P4h-Be-Adi"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstItem="4jM-l8-c2B" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="5" id="qpy-oD-bca"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="second" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="barPreferenceButton" destination="VaO-6l-Dxr" id="RDO-WC-Xq6"/>
+                        <outlet property="barPreferenceView" destination="L3E-Eu-b6i" id="imG-AX-zTW"/>
                         <outlet property="locationButton" destination="zYC-6g-4Ol" id="sTc-Ae-5VT"/>
+                        <outlet property="locationLabel" destination="i21-Fd-eLX" id="N2k-Be-6sQ"/>
+                        <outlet property="locationSlider" destination="Qqe-UB-2nP" id="3i2-cd-IvG"/>
+                        <outlet property="locationView" destination="4jM-l8-c2B" id="Owg-7V-8Ko"/>
                         <outlet property="socialButton" destination="yhP-oP-SpZ" id="cMr-OI-c9v"/>
+                        <outlet property="socialView" destination="fBq-cx-sBR" id="dCX-dT-MvZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -242,6 +299,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Image" width="320" height="213"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
