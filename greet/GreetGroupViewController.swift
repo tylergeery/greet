@@ -22,8 +22,6 @@ class GreetGroupViewController: UIViewController, UICollectionViewDelegateFlowLa
 
         // Do any additional setup after loading the view.
         let width: CGFloat = self.view.bounds.size.width / 2
-        println("width")
-        println(width)
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: width, height: 100)
@@ -48,7 +46,9 @@ class GreetGroupViewController: UIViewController, UICollectionViewDelegateFlowLa
                 }
                 
                 self.collectionView?.reloadData()
-                println("peeps loaded")
+            } else {
+                println("No results");
+                // We should probably show a couldnt find anyone notice
             }
         }
         
